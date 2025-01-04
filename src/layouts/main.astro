@@ -1,0 +1,54 @@
+---
+import "../styles/globals.css";
+import Footer from "../components/footer.astro";
+import Header from "../components/header.astro";
+const { title, description } = Astro.props;
+---
+
+<!-- Charset -->
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" />
+    <style>
+      @font-face {
+        font-weight: 400;
+        font-style: normal;
+        font-family: Open Sans;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4n.ttf);
+      }
+    </style><style>
+      html {
+        font-family:
+          Open Sans,
+          "_font_fallback_38643821001",
+          sans-serif;
+      }
+      :root {
+        --font-open-sans: Open Sans, "_font_fallback_38643821001", sans-serif;
+      }
+      @font-face {
+        font-family: "_font_fallback_38643821001";
+        size-adjust: 105.22%;
+        src: local("Arial");
+        ascent-override: 101.58%;
+        descent-override: 27.84%;
+        line-gap-override: 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="relative min-h-screen bg-neutral-950">
+      <div class="relative container max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <Header />
+        <slot />
+        <Footer />
+      </div>
+    </div>
+  </body>
+</html>

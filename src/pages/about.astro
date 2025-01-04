@@ -1,0 +1,207 @@
+---
+import MainLayout from "../layouts/main.astro";
+import { Image } from "astro:assets";
+
+const skills = [
+  {
+    category: "Languages",
+    technologies: [
+      {
+        name: "JavaScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "TypeScript",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "Python",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "HTML",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      },
+      {
+        name: "React",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Next.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Astro",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg",
+      },
+    ],
+  },
+  {
+    category: "Tools & Others",
+    technologies: [
+      {
+        name: "Git",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        name: "Visual Studio Code",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+      },
+      {
+        name: "Neovim",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neovim/neovim-original.svg",
+      },
+      {
+        name: "Figma",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+      },
+      {
+        name: "Node.js",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+    ],
+  },
+];
+
+const experiences = [
+  {
+    role: "Web Developer",
+    company: "Freelance",
+    period: "2021 - 2024",
+    description:
+      "Developing websites and web applications for clients, using technologies such as React, Next.js, Astro, and Tailwind CSS.",
+  },
+  {
+    role: "Web Developer",
+    company: "V*****",
+    period: "2024 - Present",
+    description:
+      "Building a cloud-based storage platform for Icelandic construction companies, focusing on secure file management and seamless cloud integration. Implementing robust upload/download functionality with progress tracking and error handling.",
+  },
+];
+---
+
+<MainLayout
+  title="About Me | LMZS"
+  description="Learn more about my journey, skills, and experience in web development"
+>
+  <main class="py-20">
+    <div class="space-y-16 max-w-4xl">
+      <!-- Hero Section -->
+      <section class="space-y-8">
+        <h1 class="text-4xl font-semibold text-white">About Me</h1>
+        <div class="prose prose-invert max-w-none">
+          <p class="text-neutral-300 text-lg leading-relaxed">
+            Hey there! I'm a passionate frontend developer with 7+ years of
+            experience crafting digital experiences. I believe in creating web
+            applications that not only look great but also provide exceptional
+            user experiences through clean code and optimal performance.
+          </p>
+          <p class="text-neutral-300 text-lg leading-relaxed">
+            I started my journey in web development in 2018 with php and
+            javascript. I have been working in side projects and freelancing
+            since then. Now I am skilled in javascript, typescript, python,
+            react, next.js, astro, tailwind css, git, vscode, neovim, figma,
+            node.js, etc.
+          </p>
+        </div>
+      </section>
+      <!-- Skills Section -->
+      <section class="space-y-8">
+        <h2 class="text-2xl font-semibold text-white">Skills & Technologies</h2>
+
+        {
+          skills.map((category) => (
+            <div class="space-y-6">
+              <h3 class="text-xl text-neutral-400 font-medium">
+                {category.category}
+              </h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {category.technologies.map((tech) => (
+                  <div class="group relative">
+                    {/* Card Container */}
+                    <div class="relative bg-neutral-900/50 backdrop-blur-sm rounded-xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-300">
+                      {/* Gradient Glow Effect */}
+                      <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-neutral-800/0 to-neutral-800/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Content */}
+                      <div class="relative z-10 flex flex-col items-center space-y-4">
+                        {/* Icon Container */}
+                        <div class="relative">
+                          {/* Icon Background */}
+                          <div class="absolute inset-0 bg-gradient-to-tr from-neutral-800 to-neutral-700/50 rounded-lg transform -rotate-6 scale-90 group-hover:rotate-3 transition-transform duration-300" />
+                          {/* Icon Wrapper */}
+                          <div class="relative bg-neutral-900 p-3 rounded-lg transform group-hover:-translate-y-1 transition-transform duration-300">
+                            <Image
+                              src={tech.icon}
+                              alt={tech.name}
+                              width={32}
+                              height={32}
+                              class="w-8 h-8 group-hover:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Technology Name */}
+                        <span class="text-sm font-medium text-neutral-300 group-hover:text-white transition-colors duration-300">
+                          {tech.name}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Subtle Corner Accents */}
+                    <div class="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-neutral-700/50 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div class="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-neutral-700/50 rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </section>
+      <!-- Experience Section -->
+      <section class="space-y-8">
+        <h2 class="text-2xl font-semibold text-white">
+          Professional Experience
+        </h2>
+        <div class="space-y-12">
+          {
+            experiences.map((exp) => (
+              <div class="border-l-2 border-neutral-800 pl-8 relative">
+                <div class="absolute w-3 h-3 bg-neutral-800 rounded-full -left-[7px] top-2" />
+                <div class="space-y-2">
+                  <h3 class="text-xl text-white">{exp.role}</h3>
+                  <div class="flex items-center gap-2 text-neutral-400">
+                    <span>{exp.company}</span>
+                    <span>•</span>
+                    <span>{exp.period}</span>
+                  </div>
+                  <p class="text-neutral-300">{exp.description}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="space-y-8">
+        <h2 class="text-2xl font-semibold text-white">Let's Connect</h2>
+        <p class="text-neutral-300">
+          I'm always interested in hearing about new projects and opportunities.
+          Feel free to reach out to me on
+          <a
+            href="https://github.com/lmzses"
+            class="text-white hover:text-neutral-400 transition-colors"
+            >GitHub</a
+          > or
+          <a
+            href="https://x.com/moimojk"
+            class="text-white hover:text-neutral-400 transition-colors"
+            >X/Twitter</a
+          >.
+        </p>
+      </section>
+    </div>
+  </main>
+</MainLayout>

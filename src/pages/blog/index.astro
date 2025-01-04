@@ -1,0 +1,110 @@
+---
+import MainLayout from "../../layouts/main.astro";
+import { getCollection } from "astro:content";
+// Fake blog data
+// const posts = [
+//   {
+//     title: "Building Performant Web Applications",
+//     description:
+//       "Learn the best practices for creating fast, responsive web applications that users love. We'll cover optimization techniques, lazy loading, and more.",
+//     date: "Mar 15, 2024",
+//     readTime: "5 min read",
+//     slug: "building-performant-web-applications",
+//     category: "Performance",
+//   },
+//   {
+//     title: "The Future of Frontend Development",
+//     description:
+//       "Exploring upcoming trends in frontend development, from AI-powered tools to new frameworks and methodologies that are shaping the industry.",
+//     date: "Mar 10, 2024",
+//     readTime: "8 min read",
+//     slug: "future-of-frontend-development",
+//     category: "Industry Trends",
+//   },
+//   {
+//     title: "Mastering TypeScript in 2024",
+//     description:
+//       "A comprehensive guide to TypeScript best practices, advanced types, and how to leverage TypeScript to build more maintainable applications.",
+//     date: "Mar 5, 2024",
+//     readTime: "10 min read",
+//     slug: "mastering-typescript-2024",
+//     category: "TypeScript",
+//   },
+//   {
+//     title: "Building with Astro: A Practical Guide",
+//     description:
+//       "Learn how to leverage Astro's powerful features to build fast, content-focused websites with your favorite frontend tools.",
+//     date: "Feb 28, 2024",
+//     readTime: "7 min read",
+//     slug: "building-with-astro",
+//     category: "Frameworks",
+//   },
+// ];
+
+const posts = await getCollection("blog");
+
+posts.sort((a, b) => {
+  return (
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  );
+});
+---
+
+<MainLayout
+  title="Blog | LMZS"
+  description="Frontend development articles and tutorials"
+>
+  <main class="py-20">
+    <div class="space-y-8 max-w-4xl">
+      <!-- Header -->
+      <div class="space-y-4">
+        <h1 class="text-4xl font-semibold text-white">Blog</h1>
+        <p class="text-neutral-400 text-lg">
+          Thoughts on frontend development, web performance, and building great
+          user experiences.
+        </p>
+      </div>
+
+      <!-- Blog Posts Grid -->
+      <div class="grid gap-12 pt-8">
+        {
+          posts.map((post) => (
+            <article class="group">
+              <a href={`/blog/${post.slug}`} class="block">
+                <div class="border-t border-neutral-800 py-8">
+                  <div class="space-y-4">
+                    <div class="space-y-2">
+                      <span class="text-sm text-neutral-500">
+                        {post.data.category}
+                      </span>
+                      <h2 class="text-2xl text-white group-hover:text-neutral-400 transition-colors">
+                        {post.data.title}
+                      </h2>
+                    </div>
+                    <p class="text-neutral-400 leading-relaxed">
+                      {post.data.description}
+                    </p>
+                    <div class="flex gap-3 text-sm text-neutral-500">
+                      <span>
+                        {new Date(post.data.pubDate).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </span>
+                      <span>·</span>
+                      <span>{post.data.readTime}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</MainLayout>
