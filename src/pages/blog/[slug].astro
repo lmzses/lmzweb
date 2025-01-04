@@ -13,10 +13,10 @@ export async function getStaticPaths() {
   const blogPosts = await getCollection("blog");
   console.log(
     "Available posts:",
-    blogPosts.map((p) => p.slug)
+    blogPosts.map((p: CollectionEntry<"blog">) => p.slug)
   ); // Debug available slugs
 
-  return blogPosts.map((post) => ({
+  return blogPosts.map((post: CollectionEntry<"blog">) => ({
     params: { slug: post.slug },
     props: { post },
   }));

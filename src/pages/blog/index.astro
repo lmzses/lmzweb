@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../../layouts/main.astro";
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 // Fake blog data
 // const posts = [
 //   {
@@ -43,7 +44,7 @@ import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
 
-posts.sort((a, b) => {
+posts.sort((a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => {
   return (
     new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
   );
@@ -68,7 +69,7 @@ posts.sort((a, b) => {
       <!-- Blog Posts Grid -->
       <div class="grid gap-12 pt-8">
         {
-          posts.map((post) => (
+          posts.map((post: any) => (
             <article class="group">
               <a href={`/blog/${post.slug}`} class="block">
                 <div class="border-t border-neutral-800 py-8">
